@@ -1,0 +1,29 @@
+<h2>Admin movie genres</h2>
+
+<ul class="reviews">
+    <% @genres.each do |genre| %>
+    <section class="movie">
+        <div class="image">
+            <%= image_tag get_image_from_movie_for_genre(genre) %>
+        </div>
+        <div class="summary">
+            <h4> <%= link_to genre.name,  genre_path(genre) %> </h4>
+            <span class="date">
+                <%= genre.movies.size %> movies 
+            </span>
+            <!--
+            <% if current_user_admin?%>
+                <p>
+                    <%= link_to "Edit", edit_genre_path(genre), class: "button" %>
+                    <%= link_to "Delete", genre_path(genre), method: :delete, class: "button", data: {confirm: "Are you sure?"} %>
+                </p>
+            <% end%>
+            -->
+        </div>
+    </section>
+    <% end %>
+<ul>
+
+<section class="admin">
+    <%= link_to "New gender", new_genre_path, class: "button" %>
+</section>

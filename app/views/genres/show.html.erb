@@ -1,0 +1,19 @@
+<h1> <%= @genre.name %> movies </h1>
+ <% @movies.each do |movie| %>
+    <section class="movie">
+        <div class="image">
+            <%= image_tag movie.image_file_name %>
+        </div>
+        <div class="summary">
+            <h2> <%= link_to movie.title, movie_path(movie) %> </h2>
+            <h3> <%= total_gross(movie) %> </h3>
+            <p> <%= truncate(movie.description, length: 150, separator: ' ') %>
+        </div>
+    </section>
+<% end %>
+<% if current_user_admin? %>
+    <section class="admin">
+        <%= link_to "Edit", edit_genre_path(@genre), class: "button" %>
+        <%= link_to "Delete", genre_path(@genre), method: :delete, class: "button" %>
+    </section>
+<% end %>

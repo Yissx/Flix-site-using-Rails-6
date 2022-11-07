@@ -1,0 +1,11 @@
+<%= form_with(model: @genre, local: true) do |f| %>
+    
+    <%= render "shared/errors", object: @genre %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <div class="checkboxes">
+        <%= f.collection_check_boxes(:movie_ids, Movie.order(:name), :id, :title) %>
+    </div>
+    <%= f.submit %>
+<% end %>

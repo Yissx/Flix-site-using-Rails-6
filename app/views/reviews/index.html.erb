@@ -1,0 +1,26 @@
+<h1>
+    <%= link_to @movie.title, @movie %>
+</h1>
+<ul class="reviews">
+    <% @reviews.each do |r| %>
+        <li>
+            "<%= r.comment %>".
+                <%= render "shared/stars", percent: @movie.stars_as_percent(r.stars) %> 
+            <p>    
+                By <%= link_to r.user.name, r.user %>
+            </p>
+            <span class="date">
+                <%= time_ago_in_words(r.created_at) %> ago
+            </span>
+            <% if author_user?(r.user) %>
+                <%= link_to "Edit review", edit_movie_review_path(@movie, r.id), class: "button" %> 
+                <%= link_to "Remove review", movie_review_path(@movie, r.id), class: "button", method: :delete, data: { confirm: 'Are you sure!?'} %>
+            <% end %>
+        </li>
+    <% end%>
+</ul>   
+<section class="movie-details">
+    <div class="details">
+        <%= link_to "Write review", new_movie_review_path,class: "review"%>
+    </div>
+</section>

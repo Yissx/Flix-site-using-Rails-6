@@ -1,0 +1,14 @@
+<h2><%= pluralize(@users.size, "user") %> </h2> 
+<section class="users">
+    <% @users.each do |user| %>
+            <div class="image">
+                <%= profile_image(user) %>
+            </div>
+            <div class="summary">
+                <%= link_to user.nickname, user %>
+                <!-- <p> <%= user.email %> </p> -->
+                <p> Member since <%= user.created_at.strftime("%B %Y") %> </p>
+            </div>
+    <% end %>
+<section>
+
